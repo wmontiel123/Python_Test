@@ -38,33 +38,40 @@ def calculate_schedule(inicio,fin,day_code):
         salary_total_day = calculate_salary(30,rango_1) + calculate_salary(20,rango_2) + calculate_salary(25,rango_3)
     
     return salary_total_day
-#Principal process
-with open("Employees.txt") as fname:
+def proceso_principal():
+    with open("Employees.txt") as fname:
     # Spliting the txt file into name and working hours
-    for lineas in fname:
-        nombre,horario = lineas[:-1].split('=')
-        horarios = horario.split(',')
-        salary.append({
-            'nombre':nombre,
-            'horarios':horarios
-        })
+        for lineas in fname:
+            nombre,horario = lineas[:-1].split('=')
+            horarios = horario.split(',')
+            salary.append({
+                'nombre':nombre,
+                'horarios':horarios
+                })
 
-for nombre in salary:
-    day_hour = nombre.get('horarios')
-    name = nombre.get('nombre')
-    salario_a_pagar = 0
-    for horas in day_hour:
-        day = horas[:2]
-        inicio,fin = horas[2:].split("-")
-        hora_inicio,minuto_inicio = inicio.split(":")
-        inicio = int(hora_inicio)*60+int(minuto_inicio)
-        hora_fin,minuto_fin = fin.split(":")
-        fin = int(hora_fin)*60+int(minuto_fin)  
-        if fin == 0:
-            fin = 1440
-        salario_a_pagar = salario_a_pagar + calculate_schedule(inicio,fin,day)
-        
+        for nombre in salary:
+            day_hour = nombre.get('horarios')
+            name = nombre.get('nombre')
+            salario_a_pagar = 0
+            for horas in day_hour:
+                day = horas[:2]
+                inicio,fin = horas[2:].split("-")
+                hora_inicio,minuto_inicio = inicio.split(":")
+                inicio = int(hora_inicio)*60+int(minuto_inicio)
+                hora_fin,minuto_fin = fin.split(":")
+                fin = int(hora_fin)*60+int(minuto_fin)  
+                if fin == 0:
+                    fin = 1440
+                salario_a_pagar = salario_a_pagar + calculate_schedule(inicio,fin,day)
+            print(name,salario_a_pagar)
+    
+#Principal process
+if __name__ == "__main__":
+    proceso_principal()
 
-        
-    print(name,salario_a_pagar)
+
+
+
+
+
 
