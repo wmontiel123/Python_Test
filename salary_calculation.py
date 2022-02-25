@@ -38,8 +38,8 @@ def calculate_schedule(inicio,fin,day_code):
         salary_total_day = calculate_salary(30,rango_1) + calculate_salary(20,rango_2) + calculate_salary(25,rango_3)
     
     return salary_total_day
-def proceso_principal():
-    with open("Employees.txt") as fname:
+def proceso_principal(filename):
+    with open(filename) as fname:
     # Spliting the txt file into name and working hours
         for lineas in fname:
             nombre,horario = lineas[:-1].split('=')
@@ -67,11 +67,5 @@ def proceso_principal():
     
 #Principal process
 if __name__ == "__main__":
-    proceso_principal()
-
-
-
-
-
-
+    proceso_principal("Employees.txt")
 
