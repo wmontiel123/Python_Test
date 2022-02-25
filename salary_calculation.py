@@ -63,7 +63,7 @@ def proceso_principal(filename):
                 if fin == 0:
                     fin = 1440
                 salario_a_pagar = salario_a_pagar + calculate_schedule(inicio,fin,day)
-            print(name,salario_a_pagar)
+            print("The amount to pay",name,": is",salario_a_pagar)
     
 #Principal process
 if __name__ == "__main__":
